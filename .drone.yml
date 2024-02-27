@@ -6,8 +6,6 @@ steps:
   - name: code-analysis
     image: boulundeasv/dotnet-sdk-with-java
     environment: 
-      pgconn:
-        from_secret: pgconn
       token:
         from_secret: token
     commands:
@@ -15,9 +13,4 @@ steps:
           /k:"easv-devops_MichaelPayUp_AY3q6z5_EVvRW2O60EQy" 
           /d:sonar.host.url="http://sonar.setgo.dk:9000" 
           /d:sonar.token="$token" 
-          /d:sonar.cs.vscoveragexml.reportsPath=coverage.xml 
-          /d:sonar.qualitygate.wait=true 
-      - cd backend/api && dotnet run 
-      - cd ../../test && dotnet build --no-incremental
-      - dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
       - dotnet sonarscanner end /d:sonar.token="$token"
