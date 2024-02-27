@@ -13,5 +13,5 @@ steps:
           /k:"easv-devops_MichaelPayUp_AY3q6z5_EVvRW2O60EQy" 
           /d:sonar.host.url="http://sonar.setgo.dk:9000" 
           /d:sonar.token="$token" 
-      - dotnet build
+      - cd backend/api && dotnet build
       - dotnet sonarscanner end /d:sonar.token="$token"
