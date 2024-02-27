@@ -5,6 +5,9 @@ name: integration
 steps:
   - name: code-analysis
     image: boulundeasv/dotnet-sdk-with-java
+    environment: 
+      pgconn:
+        from_secret: pgconn
     commands:
       - dotnet sonarscanner begin 
           /k:"easv-devops_MichaelPayUp_AY3q6z5_EVvRW2O60EQy" 
